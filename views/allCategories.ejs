@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (categories) {%>
+        <ul>
+        <% for (const category of categories) {%>
+            <li><a href="/category/<%=category.id%>"><%=category.name%></a> <form action="/update/<%=category.id%>" method="get"><button type="submit">Update</button></form> <form action="/delete/<%=category.id%>" method="post"><button type="submit">Delete</button></form></li>
+        <%}%>
+        </ul>
+    <%} else { %>
+        no category added yet
+    <%} %>
+    <form action="/category/create" method="get">Create a new category <button type="submit">Create category</button></form>
+</body>
+</html>
