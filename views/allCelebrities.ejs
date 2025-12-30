@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <%= items %>
+    <% if (locals.celebrities) { %>
+            <% for( const celebrity of celebrities) { %>
+                    <div class="celebrity-frame">
+                        <ul>
+                            <li><a href="/celebrity/<%- celebrity.id %>"><%=celebrity.name%></a></li>
+                            <li><%=celebrity.birthdate%></li>
+                            <li><%=celebrity.description%></li>
+                        </ul>
+                    </div>
+            <% } %>
+    <% } %>
 </body>
 </html>

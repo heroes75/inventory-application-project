@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('node:path');
 const indexRouter = require('./routes/index-router');
 const categoriesRouter = require('./routes/categories-router');
-const itemsRouter = require('./routes/celebrities-router');
+const celebritiesRouter = require('./routes/celebrities-router');
 
 const app = express()
 const PORT = 3000
@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(indexRouter)
 app.use(['/categories', '/category'], categoriesRouter)
-app.use(['/celebrities', '/celebrity'], itemsRouter)
+app.use(['/celebrities', '/celebrity'], celebritiesRouter)
 
 app.listen(PORT, (err) => {
     if (err) {

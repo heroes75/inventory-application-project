@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page of <%= locals.celebrity?.name || "celebrity" %></title>
+</head>
+<body>
+    <% if (locals.celebrity) { %>
+            <div class="celebrity-container">
+                <h3><%=celebrity.name%></h3>
+                <p><%=celebrity.birthdate%></p>
+                <p><%=celebrity.description%></p>
+            </div>
+    <% } else {%>
+            <h3>this celebrity don't exist yet</h3>
+    <%} %>
+</body>
+</html>

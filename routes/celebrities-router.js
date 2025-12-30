@@ -1,8 +1,11 @@
 const { Router } = require("express");
-const { getAllCelebrities } = require("../controllers/celebrities-controller");
+const { getAllCelebrities, getCelebrity, displayAddCelebrityForm, addCelebrity } = require("../controllers/celebrities-controller");
 
-const itemsRouter = Router();
+const celebritiesRouter = Router();
 
-itemsRouter.get("/", getAllCelebrities);
+celebritiesRouter.get("/", getAllCelebrities);
+celebritiesRouter.get("/create", displayAddCelebrityForm);
+celebritiesRouter.post("/create", addCelebrity);
+celebritiesRouter.get("/:id", getCelebrity);
 
-module.exports = itemsRouter;
+module.exports = celebritiesRouter;
