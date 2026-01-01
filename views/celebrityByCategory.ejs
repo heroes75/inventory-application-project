@@ -6,10 +6,12 @@
     <title>celebrities for this category</title>
 </head>
 <body>
+    <%- include('partials/header') %>
     <%if(locals.celebrities.length !== 0) {%>
         <%console.log('locals.celebrities:', locals.celebrities.length)%>
         <% for(const celebrity of celebrities) {%>
             <%- include('./partials/celebrityFrame', {celebrity: celebrity}) %>
+            <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
         <%}%>
     <%} else {%>
         no celebrity added to this category yet

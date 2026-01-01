@@ -6,11 +6,13 @@
     <title>UPDATE CATEGORY</title>
 </head>
 <body>
+    <%- include('partials/header') %>
+    <%- include('partials/errors', {errors: locals.errors}) %>
     <% if (locals.category) { %>
         <form action="" method="post">
             <%- include('partials/categoryForm', {name: category.name}) %>
+            <button type="submit">Update this category</button>
         </form>
-        <%console.log('category.name:', category)%>
     <% } else { %>
         this category don't exist yet
     <%} %>

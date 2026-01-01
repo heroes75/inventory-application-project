@@ -6,20 +6,9 @@
     <title>Add a celebrity</title>
 </head>
 <body>
+    <%- include('partials/header') %>
     <form action="/celebrity/create" method="post">
-        <div class="name-input-container">
-            <label for="name">Enter celebrity name: </label>
-            <input type="text" name="name" id="name">
-        </div>
-        <div class="birthdate-input-container">
-            <label for="birthdate">Enter celebrity birthdate: </label>
-            <input type="date" name="birthdate" id="birthdate">
-        </div>
-        <div class="description-input-container">
-            <label for="description">Enter celebrity bio: </label>
-            <textarea name="description" id="description" cols="30" rows="10"></textarea>
-        </div>
-        <button type="submit">add your celebrity</button>
+        <%- include('partials/celebrityForm', {categories: categories}) %>
     </form>
 </body>
 </html>

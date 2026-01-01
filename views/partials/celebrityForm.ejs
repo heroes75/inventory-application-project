@@ -1,13 +1,24 @@
 <div class="name-input-container">
     <label for="name">Enter celebrity name: </label>
-    <input type="text" name="name" id="name" value="<%= locals.celebrity?.name || '' %>" />
+    <input type="text" name="name" id="name" value="<%= locals.celebrity?.name || '' %>" required/>
 </div>
 <div class="birthdate-input-container">
     <label for="birthdate">Enter celebrity birthdate: </label>
-    <input type="date" name="birthdate" id="birthdate" />
+    <input type="date" name="birthdate" id="birthdate" value="<%= locals.celebrity?.birthdate || '' %>" required/>
+</div>
+<div class="category-input-container">
+    <label for="category-select">Select celebrity category </label>
+    <select name="categoryId" id="categoryId" >
+        <% if (locals.categories) { %>
+                <% for( const category of categories) { %>
+                        <option value="<%= category?.id || '' %>"  <% if(locals.celebrity?.categoryId === category.id){%> selected <%}%> ><%= category?.name || '' %></option>
+                <% } %>
+        <% } %>
+    </select>
 </div>
 <div class="description-input-container">
     <label for="description">Enter celebrity bio: </label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10" required> <%= locals.celebrity?.description || '' %></textarea>
 </div>
+
 <button type="submit">add your celebrity</button>

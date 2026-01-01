@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include('partials/header') %>
+    <% if (locals.errors) { %>
+            <%- include('partials/errors', {errors: errors}) %>
+    <% } %>
     <% if (categories) {%>
         <ul>
         <% for (const category of categories) {%>
@@ -16,5 +20,6 @@
         no category added yet
     <%} %>
     <form action="/category/create" method="get">Create a new category <button type="submit">Create category</button></form>
+    <script src="../controllers/categories-controller.js"></script>
 </body>
 </html>

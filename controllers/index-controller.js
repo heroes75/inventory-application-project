@@ -22,7 +22,7 @@ const celebrities = [
         name: "Kako d'Akishino",
         birthdate: "1994-12-29",
         description: "princess of japan",
-        categoryId: 2
+        categoryId: 2,
     }
 ]
 

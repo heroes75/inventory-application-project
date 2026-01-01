@@ -6,11 +6,14 @@
     <title>Page of <%= locals.celebrity?.name || "celebrity" %></title>
 </head>
 <body>
+    <%- include('partials/header') %>
     <% if (locals.celebrity) { %>
             <div class="celebrity-container">
                 <h3><%=celebrity.name%></h3>
                 <p><%=celebrity.birthdate%></p>
                 <p><%=celebrity.description%></p>
+                <p><%= locals.category %></p>
+                <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
             </div>
     <% } else {%>
             <h3>this celebrity don't exist yet</h3>

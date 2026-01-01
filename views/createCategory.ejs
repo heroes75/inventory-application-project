@@ -6,8 +6,11 @@
     <title>Create a category</title>
 </head>
 <body>
+    <%- include('partials/header') %>
+    <%- include('partials/errors', {errors: locals.errors}) %>
     <form action="/category/create" method="post">
         <%- include('partials/categoryForm.ejs') %>
+        <button type="submit">Submit a new category</button>
     </form>
 </body>
 </html>
