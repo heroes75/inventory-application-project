@@ -14,7 +14,7 @@
                             <li><a href="/celebrity/<%- celebrity.id %>"><%=celebrity.name%></a></li>
                             <li><%=celebrity.birthdate%></li>
                             <li><%=celebrity.description%></li>
-                            <li><%- categories.filter(category => category.id === celebrity.categoryId)[0].name %></li>
+                            <li><%- categories.filter(category => category.id === celebrity.categoryid)[0].name %></li>
                             <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
                         </ul>
                     </div>

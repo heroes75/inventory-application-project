@@ -37,8 +37,14 @@ const categories = [
     }
 ]
 
+let maxIndex = {
+    categoryIndex:2,
+    celebrityIndex:3
+} 
+
 module.exports = {
     indexController,
     celebrities,
     categories,
+    maxIndex,
 }

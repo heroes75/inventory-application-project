@@ -1,5 +1,6 @@
 const {body, matchedData, validationResult} = require("express-validator")
-const { categories, celebrities } = require("./index-controller")
+const { categories, celebrities, maxIndex } = require("./index-controller")
+const { queryAllCategories, queryCreateCategory, queryUpdateCategory, queryDeleteCategory, queryCelebritiesByCategoriesId, selectCategory } = require("../db/queries")
 
 const categoryValidator = [
     body('category')
@@ -8,42 +9,49 @@ const categoryValidator = [
         .isLength({max: 30}).withMessage('your message can\'t overflow ')
 ]
 
-function getAllCategories(req, res) {
+async function getAllCategories(req, res) {
+    const categories = await queryAllCategories()
+    console.log('categories:', categories)
     res.render('allCategories', {categories: categories})
 }
 
-function getCelebritiesByCategoryId(req, res) {
+async function getCelebritiesByCategoryId(req, res) {
     const {id} = req.params
     const celebritiesByCategory = celebrities.filter(celebrity => celebrity.categoryId === +id)
-    res.render("celebrityByCategory", {celebrities: celebritiesByCategory})
+    const celebritiesByCategoryDatabase = await queryCelebritiesByCategoriesId(+id)
+    res.render("celebrityByCategory", {celebrities: celebritiesByCategoryDatabase})
 }
 
 function displayFormCategory(req, res) {
     res.render('createCategory.ejs')
 }
 
-function createCategory(req, res) {
+async function createCategory(req, res) {
     const errors = validationResult(req);
     console.log('errors:', errors)
     if (errors.errors.length !== 0) {
         res.render('createCategory', {errors: errors.errors})
         return
     }
-    const {category} = matchedData(req)
+    const {category} = matchedData(req);
+    maxIndex.categoryIndex += 1
     categories.push({
-        id: categories.length + 1,
+        id: maxIndex.categoryIndex,
         name: category,
     })
-    res.redirect('/category')
+    await queryCreateCategory(category)
+    console.log(categories)
+    res.redirect('/category');
 }
 
-function displayUpdateCategory(req, res) {
+async function displayUpdateCategory(req, res) {
     const {id} = req.params;
-    const category = categories.filter(category => category.id === +id);
+    const category = await selectCategory(+id);
+    console.log('category:', category)
     res.render('updateCategory', {category: category.length === 0 ? undefined : category[0]})
 }
 
-function postUpdateCategory(req, res) {
+async function postUpdateCategory(req, res) {
     const {category} = matchedData(req);
     const errors = validationResult(req);
     const {id} = req.params;
@@ -57,14 +65,16 @@ function postUpdateCategory(req, res) {
             categoryId.name = category;
         }
     }
-    res.redirect('/category')
+    await queryUpdateCategory(category, +id);
+    res.redirect('/category');
 }
 
-function deleteCategory(req, res) {
+async function deleteCategory(req, res) {
     const {id} = req.params;
-    const selectedId = categories.findIndex(category => category.id === +id);
-    if (+id === 2) {
-        res.render('unauthorized', {info: categories[selectedId].name});
+    const categoryDatabase = await queryAllCategories()
+    const selectedId = categoryDatabase.findIndex(category => category.id === +id);
+    if (+id === 1) {
+        res.render('unauthorized', {info: categoryDatabase[selectedId].name});
         return
     }
     
@@ -75,6 +85,7 @@ function deleteCategory(req, res) {
         }
     }
     categories.splice(selectedId, 1);
+    await queryDeleteCategory(+id)
     res.redirect('/category')
 }
 
