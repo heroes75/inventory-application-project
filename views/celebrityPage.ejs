@@ -12,7 +12,7 @@
                 <h3><%=celebrity.name%></h3>
                 <p><%=celebrity.birthdate%></p>
                 <p><%=celebrity.description%></p>
-                <p><%= locals.category %></p>
+                <p><%= celebrity.category %></p>
                 <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
             </div>
     <% } else {%>

@@ -1,17 +1,24 @@
-const {Router} = require('express')
-const { getAllCategories, getCelebritiesByCategoryId, displayFormCategory, createCategory, displayUpdateCategory, postUpdateCategory, deleteCategory, categoryValidator } = require('../controllers/categories-controller')
+const { Router } = require("express");
+const {
+    getAllCategories,
+    getCelebritiesByCategoryId,
+    displayFormCategory,
+    createCategory,
+    displayUpdateCategory,
+    postUpdateCategory,
+    deleteCategory,
+    categoryValidator,
+} = require("../controllers/categories-controller");
 
-const categoriesRouter = Router()
+const categoriesRouter = Router();
 
-categoriesRouter.get('/', getAllCategories)
-categoriesRouter.get('/create', displayFormCategory);
-categoriesRouter.post('/create', categoryValidator, createCategory);
-categoriesRouter.get('/update/:id', displayUpdateCategory)
-categoriesRouter.post('/update/:id', categoryValidator, postUpdateCategory)
-categoriesRouter.post('/delete/:id', deleteCategory)
+categoriesRouter.get("/", getAllCategories);
+categoriesRouter.get("/create", displayFormCategory);
+categoriesRouter.post("/create", categoryValidator, createCategory);
+categoriesRouter.get("/update/:id", displayUpdateCategory);
+categoriesRouter.post("/update/:id", categoryValidator, postUpdateCategory);
+categoriesRouter.post("/delete/:id", deleteCategory);
 
+categoriesRouter.get("/:id", getCelebritiesByCategoryId);
 
-categoriesRouter.get('/:id', getCelebritiesByCategoryId)
-
-
-module.exports = categoriesRouter
+module.exports = categoriesRouter;

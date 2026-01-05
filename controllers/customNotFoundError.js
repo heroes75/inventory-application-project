@@ -1,9 +1,9 @@
 class CustomNotFoundError extends Error {
     constructor(message) {
-        super(message)
+        super(message);
         this.statusCode = 404;
-        this.name = "NotFoundError"
+        this.name = "NotFoundError";
     }
 }
 
-module.exports = CustomNotFoundError
+module.exports = CustomNotFoundError;

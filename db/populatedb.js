@@ -1,5 +1,5 @@
-const {Client} = require('pg');
-const {argv} = require('node:process')
+const { Client } = require("pg");
+const { argv } = require("node:process");
 
 const SQL = `
     CREATE TABLE IF NOT EXISTS categories 
@@ -23,18 +23,18 @@ const SQL = `
     ('Aeri Uchinaga', '2000-10-30', 'she so beautiful too', 2),
     ('KAKO D AKISHINO', '1994-12-29', 'princess of japan', 1),
     ('KIM JISOO', '1995-01-03', 'Singer', 2);
-`
+`;
 
 async function main() {
-    console.log('start populating...')
+    console.log("start populating...");
     const client = new Client({
-        connectionString: argv[2]
-    })
+        connectionString: argv[2],
+    });
 
     await client.connect();
-    await client.query(SQL)
-    await client.end()
-    console.log('end populating...')
+    await client.query(SQL);
+    await client.end();
+    console.log("end populating...");
 }
 
-main()
+main();

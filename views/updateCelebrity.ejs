@@ -7,8 +7,9 @@
   </head>
   <body>
     <%- include('partials/header') %> 
+    <%- include('partials/errors', {errors: locals.errors}) %>
     <% if (locals.celebrity) { %>
-    <form action="/celebrities/<%- celebrity.id %>/update" method="post">
+    <form action="/celebrity/<%- celebrity.id %>/update" method="post">
       <%- include('partials/celebrityForm', {categories: categories, celebrity: celebrity}) %>
     </form>
     <% } else { %>

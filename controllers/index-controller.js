@@ -1,5 +1,5 @@
 function indexController(req, res) {
-    res.render('index')
+    res.render("index");
 }
 
 const celebrities = [
@@ -8,14 +8,14 @@ const celebrities = [
         name: "Rei Naoi",
         birthdate: "2004-02-03",
         description: "She soo beautiful",
-        categoryId: 1
+        categoryId: 1,
     },
     {
         id: 2,
         name: "Aeri Uchinaga",
         birthdate: "2000-10-30",
         description: "She soo beautiful too",
-        categoryId: 1
+        categoryId: 1,
     },
     {
         id: 3,
@@ -23,28 +23,28 @@ const celebrities = [
         birthdate: "1994-12-29",
         description: "princess of japan",
         categoryId: 2,
-    }
-]
+    },
+];
 
 const categories = [
     {
         id: 1,
-        name: 'Music' 
+        name: "Music",
     },
     {
         id: 2,
-        name: "politics"
-    }
-]
+        name: "politics",
+    },
+];
 
 let maxIndex = {
-    categoryIndex:2,
-    celebrityIndex:3
-} 
+    categoryIndex: 2,
+    celebrityIndex: 3,
+};
 
 module.exports = {
     indexController,
     celebrities,
     categories,
     maxIndex,
-}
+};
