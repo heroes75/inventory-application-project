@@ -108,7 +108,7 @@ async function insertIntoCelebrities({
             [name, birthdate, description, categoryId],
         );
     } catch (error) {
-        throw new CustomDatabaseError(error);
+        throw new CustomDatabaseError("Server Error");
     }
 }
 
@@ -122,7 +122,7 @@ async function updateCelebritySet(
             [name, birthdate, description, categoryId, id],
         );
     } catch (error) {
-        throw new CustomDatabaseError(error);
+        throw new CustomDatabaseError("Server Error");
     }
 }
 
