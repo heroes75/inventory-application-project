@@ -129,14 +129,29 @@ async function updateCelebrity(req, res) {
 
 async function deleteCelebrity(req, res) {
     const { id } = req.params;
-    const [celebrity] = await selectCelebrity(+id)
+    const [celebrity] = await selectCelebrity(+id);
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        res.render('deleteCelebrityPage', {errors: errors.errors, celebrity})
+        return
+    }
     if (+id === 3) {
-        res.render("unauthorized", { info: celebrity.name });
+        res.render("unauthorized", { info: celebrity.celebrityname });
         return;
     }
 
     await deleteFromCelebrity(+id);
     res.redirect("/celebrity");
+}
+
+async function getDeleteCelebrityPage(req, res) {
+    const id = req.params?.id
+    const [celebrity] = await selectCelebrity(id)
+    console.log('celebrity:', celebrity)
+    if (!celebrity?.celebrityid) {
+        throw new CustomNotFoundError("not celebrity found")
+    }
+    res.render('deleteCelebrityPage', {celebrity})
 }
 
 module.exports = {
@@ -148,4 +163,5 @@ module.exports = {
     updateCelebrity,
     deleteCelebrity,
     celebrityValidator,
+    getDeleteCelebrityPage
 };

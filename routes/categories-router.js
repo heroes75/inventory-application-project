@@ -8,6 +8,8 @@ const {
     postUpdateCategory,
     deleteCategory,
     categoryValidator,
+    passwordValidator,
+    getDeleteCategoryPage,
 } = require("../controllers/categories-controller");
 
 const categoriesRouter = Router();
@@ -16,8 +18,9 @@ categoriesRouter.get("/", getAllCategories);
 categoriesRouter.get("/create", displayFormCategory);
 categoriesRouter.post("/create", categoryValidator, createCategory);
 categoriesRouter.get("/update/:id", displayUpdateCategory);
-categoriesRouter.post("/update/:id", categoryValidator, postUpdateCategory);
-categoriesRouter.post("/delete/:id", deleteCategory);
+categoriesRouter.post("/update/:id", categoryValidator, passwordValidator, postUpdateCategory);
+categoriesRouter.get("/delete/:id", getDeleteCategoryPage);
+categoriesRouter.post("/delete/:id", passwordValidator, deleteCategory);
 
 categoriesRouter.get("/:id", getCelebritiesByCategoryId);
 

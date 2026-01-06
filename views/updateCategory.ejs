@@ -11,6 +11,7 @@
     <% if (locals.category) { %>
         <form action="" method="post">
             <%- include('partials/categoryForm', {name: category.name}) %>
+            <%- include('partials/passwordForm') %>
             <button type="submit">Update this category</button>
         </form>
     <% } else { %>

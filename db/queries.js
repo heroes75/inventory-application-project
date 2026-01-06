@@ -6,6 +6,7 @@ async function queryAllCategories() {
         const { rows } = await pool.query("SELECT * FROM categories");
         return rows;
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -18,6 +19,7 @@ async function queryCelebritiesByCategoriesId(id) {
         );
         return rows;
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -28,6 +30,7 @@ async function queryCreateCategory(category) {
             category,
         ]);
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -40,6 +43,7 @@ async function selectCategory(id) {
         );
         return rows;
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -51,6 +55,7 @@ async function queryUpdateCategory(category, id) {
             id,
         ]);
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -59,6 +64,7 @@ async function queryDeleteCategory(id) {
     try {
         await pool.query("DELETE FROM categories WHERE id=$1", [id]);
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -68,6 +74,7 @@ async function queryAllCelebrity() {
         const { rows } = await pool.query("SELECT * FROM celebrities");
         return rows;
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -84,6 +91,7 @@ async function selectCelebrity(id) {
         );
         return rows;
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -92,6 +100,7 @@ async function deleteFromCelebrity(id) {
     try {
         await pool.query(`DELETE FROM celebrities WHERE id=$1`, [id]);
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -108,6 +117,7 @@ async function insertIntoCelebrities({
             [name, birthdate, description, categoryId],
         );
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }
@@ -122,6 +132,7 @@ async function updateCelebritySet(
             [name, birthdate, description, categoryId, id],
         );
     } catch (error) {
+        console.error(error);
         throw new CustomDatabaseError("Server Error");
     }
 }

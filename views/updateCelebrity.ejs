@@ -11,6 +11,8 @@
     <% if (locals.celebrity) { %>
     <form action="/celebrity/<%- celebrity.id %>/update" method="post">
       <%- include('partials/celebrityForm', {categories: categories, celebrity: celebrity}) %>
+      <%- include('partials/passwordForm') %>
+      <button type="submit">Update your celebrity</button>
     </form>
     <% } else { %>
         you didn't added this celebrity yet

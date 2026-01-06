@@ -1,0 +1,5 @@
+<form action="/category/delete/<%- locals.category.id %>" method="post">
+    <%- include('partials/errors', {errors: locals.errors}) %>
+    <%- include('partials/passwordForm') %>
+    <button type="submit">Delete this category</button>
+</form>

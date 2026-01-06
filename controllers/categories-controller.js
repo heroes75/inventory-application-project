@@ -9,6 +9,7 @@ const {
     queryAllCelebrity,
     deleteFromCelebrity,
 } = require("../db/queries");
+const CustomNotFoundError = require("./customNotFoundError");
 
 const categoryValidator = [
     body("category")
@@ -17,7 +18,13 @@ const categoryValidator = [
         .withMessage("category must not be empty")
         .isLength({ max: 30 })
         .withMessage("your message can't overflow 30 characters"),
-];
+    ];
+
+const passwordValidator = [
+    body("password")
+        .trim()
+        .equals("the code").withMessage("Please Enter the code")
+]
 
 async function getAllCategories(req, res) {
     const categories = await queryAllCategories();
@@ -60,7 +67,8 @@ async function postUpdateCategory(req, res) {
     const { category } = matchedData(req);
     const errors = validationResult(req);
     const { id } = req.params;
-    const categoryDb = await selectCategory(+id);
+    const [categoryDb] = await selectCategory(+id);
+    console.log('categoryDb:', categoryDb)
     if (!errors.isEmpty()) {
         res.render("updateCategory", {
             errors: errors.errors,
@@ -78,9 +86,19 @@ async function deleteCategory(req, res) {
     const selectedId = categoryDatabase.findIndex(
         (category) => category.id === +id,
     );
+    if (selectedId === -1) {
+        throw new CustomNotFoundError("this celebrity don't exist yet")
+    }
     if (+id === 1) {
         res.render("unauthorized", { info: categoryDatabase[selectedId].name });
         return;
+    }
+    const [category] = await selectCategory(+id)
+    console.log('category:', category)
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        res.render("deleteCategoryPage", { category: category, errors: errors.errors})
+        return
     }
     const celebrities = await queryAllCelebrity();
     for (const celebrity of celebrities) {
@@ -92,6 +110,17 @@ async function deleteCategory(req, res) {
     res.redirect("/category");
 }
 
+async function getDeleteCategoryPage(req, res) {
+    const id = req.params?.id;
+    const [category] = await selectCategory(id)
+    if (!category?.id) {
+        throw new CustomNotFoundError("this category don't exist")
+    }
+    
+
+    res.render('deleteCategoryPage', {category})
+}
+
 module.exports = {
     getAllCategories,
     getCelebritiesByCategoryId,
@@ -101,4 +130,6 @@ module.exports = {
     postUpdateCategory,
     deleteCategory,
     categoryValidator,
+    passwordValidator,
+    getDeleteCategoryPage,
 };

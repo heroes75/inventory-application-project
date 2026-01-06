@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles-all-category">
+    <title>All categories</title>
 </head>
 <body>
     <%- include('partials/header') %>
@@ -11,9 +12,9 @@
             <%- include('partials/errors', {errors: errors}) %>
     <% } %>
     <% if (categories) {%>
-        <ul>
+        <ul class="category-ul">
         <% for (const category of categories) {%>
-            <li><a href="/category/<%=category.id%>"><%=category.name%></a> <a href="category/update/<%=category.id%>">Update</a> <form action="category/delete/<%=category.id%>" method="post"><button onclick="return window.confirm(`Are you to delete this category <%= category.name %> ?`)" type="submit">Delete</button></form></li>
+            <li class="category-container"><a href="/category/<%=category.id%>"><%=category.name%></a> <a href="category/update/<%=category.id%>">Update</a> <a href="category/delete/<%=category.id%>"><button onclick="return window.confirm(`Are you to delete this category <%= category.name %> ?`)">Delete</button></a></li>
         <%}%>
         </ul>
     <%} else { %>
