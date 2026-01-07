@@ -1,0 +1,22 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body, html {
+    height: 100%;
+}
+
+.description-page {
+    font-size: 22px;
+}
+
+.celebrity-container {
+    padding: 200px 20px;
+
+}
+
+.celebrity-container * {
+    margin: 15px 0 15px 0 15px;
+}

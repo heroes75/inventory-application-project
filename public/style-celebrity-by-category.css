@@ -1,10 +1,9 @@
+
+
 main {
-    /* display: flex; */
     padding: 26px;
 }
-body {
-    background-color: blue;
-}
+
 .all-celebrities-container {
     display: flex;
     gap: 32px;
@@ -21,6 +20,7 @@ body {
     flex-direction: column;
     padding: 20px 0;
     gap: 10px;
+    text-decoration: none;
 }
 
 .celebrity-frame ul li:first-child:not(.birthdate-all-celebrity) {

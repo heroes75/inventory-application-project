@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles-celebrity-page.css">
     <title>Page of <%= locals.celebrity?.name || "celebrity" %></title>
 </head>
 <body>
     <%- include('partials/header') %>
-    <% if (locals.celebrity) { %>
-            <div class="celebrity-container">
-                <h3><%=celebrity.name%></h3>
-                <p><%=celebrity.birthdate%></p>
-                <p><%=celebrity.description%></p>
-                <p><%= celebrity.category %></p>
-                <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
-            </div>
-    <% } else {%>
-            <h3>this celebrity don't exist yet</h3>
-    <%} %>
+    <main>
+        <% if (locals.celebrity) { %>
+                <div class="celebrity-container">
+                    <h1><%=celebrity.name%></h1>
+                    <h3> Born in: <%=celebrity.birthdate%></h3>
+                    <p class="description-page"><%=celebrity.description%></p>
+                    <h4><%= celebrity.category %></h4>
+                    <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
+                </div>
+        <% } else {%>
+                <h3>this celebrity don't exist yet</h3>
+        <%} %>
+    </main>
 </body>
 </html>

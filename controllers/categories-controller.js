@@ -34,6 +34,11 @@ async function getAllCategories(req, res) {
 async function getCelebritiesByCategoryId(req, res) {
     console.log('start of getCelebritiesByCategoryId');
     const { id } = req.params;
+    console.log('req.params:', req.params)
+    console.log('id:', id)
+    if (id === "style-celebrity-by-category.css") {
+        return
+    }
     const celebritiesByCategoryDatabase = await queryCelebritiesByCategoriesId(+id);
     console.log('celebritiesByCategoryDatabase:', celebritiesByCategoryDatabase)
     res.render("celebrityByCategory", {
