@@ -12,13 +12,16 @@ async function queryAllCategories() {
 }
 
 async function queryCelebritiesByCategoriesId(id) {
+    console.log('start queryCelebritiesByCategoriesId');
+    
+    console.log('id:', id)
     try {
-        const { rows } = await pool.query(
-            "SELECT * FROM celebrities WHERE categoryId = $1",
-            [id],
-        );
+        const { rows } = await pool.query("SELECT * FROM celebrities WHERE categoryid=$1",[id]);
+        console.log('rows:', rows)
+        console.log('end queryCelebritiesByCategoriesId');
         return rows;
     } catch (error) {
+        console.log('error in queryCelebritiesByCategoriesId');
         console.error(error);
         throw new CustomDatabaseError("Server Error");
     }

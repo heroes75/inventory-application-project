@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(indexRouter);
-app.use(["/categories", "/category"], categoriesRouter);
+app.use("/category", categoriesRouter);
 app.use(["/celebrities", "/celebrity"], celebritiesRouter);
 
 app.use((err, req, res, next) => {

@@ -1,0 +1,61 @@
+main {
+    /* display: flex; */
+    padding: 26px;
+}
+body {
+    background-color: blue;
+}
+.all-celebrities-container {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 30px;
+}
+
+.celebrity-frame {
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+}
+.celebrity-frame ul {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 10px;
+}
+
+.celebrity-frame ul li:first-child:not(.birthdate-all-celebrity) {
+    text-align: center;
+    color: blue;
+    text-decoration: underline
+}
+
+.celebrity-frame ul li {
+    margin: 10px;
+}
+
+.other-celebrity-info {
+    align-self: center;
+}
+
+.celebrity-link-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 18px;
+}
+
+.bio-all-celebrity {
+    display: block;
+}
+
+.bio-description {
+    font-weight: 100;
+    text-overflow: ellipsis;
+    max-height: 100px;
+}
+
+.create-celebrity-container {
+    padding: 20px 10px;
+    background-color: #F0F0F0;
+    border-radius: 15px;
+}

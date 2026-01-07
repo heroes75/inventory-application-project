@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-celebrity-by-category.css">
     <title>celebrities for this category</title>
 </head>
 <body>
     <%- include('partials/header') %>
-    <%if(locals.celebrities.length !== 0) {%>
-        <%console.log('locals.celebrities:', locals.celebrities.length)%>
-        <% for(const celebrity of celebrities) {%>
-            <%- include('./partials/celebrityFrame', {celebrity: celebrity}) %>
-            <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
+    <main>
+        <%if(locals.celebrities.length !== 0) {%>
+            <% for(const celebrity of celebrities) {%>
+                <div class="all-celebrity-container">
+                    <%- include('./partials/celebrityFrame', {celebrity: celebrity}) %>
+                </div>
+            <%}%>
+        <%} else {%>
+            no celebrity added to this category yet
         <%}%>
-    <%} else {%>
-        no celebrity added to this category yet
-    <%}%>
+    </main>
     <a href="/celebrity/create">add celebrity</a>
 </body>
 </html>

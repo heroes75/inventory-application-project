@@ -32,12 +32,14 @@ async function getAllCategories(req, res) {
 }
 
 async function getCelebritiesByCategoryId(req, res) {
+    console.log('start of getCelebritiesByCategoryId');
     const { id } = req.params;
-    const celebritiesByCategoryDatabase =
-        await queryCelebritiesByCategoriesId(+id);
+    const celebritiesByCategoryDatabase = await queryCelebritiesByCategoriesId(+id);
+    console.log('celebritiesByCategoryDatabase:', celebritiesByCategoryDatabase)
     res.render("celebrityByCategory", {
-        celebrities: celebritiesByCategoryDatabase,
+        celebrities: celebritiesByCategoryDatabase
     });
+    console.log('end of getCelebritiesByCategoryId');
 }
 
 function displayFormCategory(req, res) {

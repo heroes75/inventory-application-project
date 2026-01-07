@@ -1,5 +1,14 @@
-<ul>
-    <li>Name: <%= celebrity.name %></li>
-    <li>Birthdate:<%= celebrity.birthdate %></li>
-    <li>Description: <%= celebrity.description %></li>
-</ul>
+ 
+
+<div class="celebrity-frame">
+    <ul>
+        <li><a href="/celebrity/<%- celebrity.id %>"><strong><%=celebrity.name%></strong></a></li>
+        <div class="other-celebrity-info">
+            <li class="birthdate-all-celebrity"><strong>Birthdate:</strong> <%=celebrity.birthdate.toISOString().split('T')[0]%></li>
+            <li><strong class="bio-all-celebrity">Bio:</strong><div class="bio-description"><i><%=celebrity.description%></i></div></li>
+        <div class="celebrity-link-container">
+            <%- include('celebrityLink', {celebrity: celebrity}) %>
+        </div>
+        </div>
+    </ul>
+</div>

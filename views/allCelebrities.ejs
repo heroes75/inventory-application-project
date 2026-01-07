@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style-all-celebrities.css">
+    <title>All celebrities</title>
 </head>
 <body>
     <%- include('partials/header') %>
-    <% if (locals.celebrities) { %>
-            <% for( const celebrity of celebrities) { %>
-                    <div class="celebrity-frame">
-                        <ul>
-                            <li><a href="/celebrity/<%- celebrity.id %>"><%=celebrity.name%></a></li>
-                            <li><%=celebrity.birthdate%></li>
-                            <li><%=celebrity.description%></li>
-                            <li><%- categories.filter(category => category.id === celebrity.categoryid)[0].name %></li>
-                            <%- include('partials/celebrityLink', {celebrity: celebrity}) %>
-                        </ul>
-                    </div>
-            <% } %>
-    <% } %>
-    <a href="/celebrities/create">Add a celebrity</a>
+    <main>
+        <% if (locals.celebrities) { %>
+                <div class="all-celebrities-container">
+                    <% for( const celebrity of celebrities) { %>
+                            <div class="celebrity-frame">
+                                <ul>
+                                    <li><a href="/celebrity/<%- celebrity.id %>"><strong><%=celebrity.name%></strong></a></li>
+                                    <div class="other-celebrity-info">
+                                        <li class="birthdate-all-celebrity"><strong>Birthdate:</strong> <%=celebrity.birthdate.toISOString().split('T')[0]%></li>
+                                        <li><strong>Category:</strong><%- categories.filter(category => category.id === celebrity.categoryid)[0].name %></li>
+                                        <li><strong class="bio-all-celebrity">Bio:</strong><div class="bio-description"><i><%=celebrity.description%></i></div></li>
+                                        <div class="celebrity-link-container"><%- include('partials/celebrityLink', {celebrity: celebrity}) %></div>
+                                    </div>
+                                </ul>
+                            </div>
+                    <% } %>
+                </div>
+        <% } %>
+        <a class="create-celebrity-container" href="/celebrities/create">Add a celebrity</a>
+    </main>
 </body>
 </html>
