@@ -32,19 +32,14 @@ async function getAllCategories(req, res) {
 }
 
 async function getCelebritiesByCategoryId(req, res) {
-    console.log('start of getCelebritiesByCategoryId');
     const { id } = req.params;
-    console.log('req.params:', req.params)
-    console.log('id:', id)
     if (id === "style-celebrity-by-category.css") {
         return
     }
     const celebritiesByCategoryDatabase = await queryCelebritiesByCategoriesId(+id);
-    console.log('celebritiesByCategoryDatabase:', celebritiesByCategoryDatabase)
     res.render("celebrityByCategory", {
         celebrities: celebritiesByCategoryDatabase
     });
-    console.log('end of getCelebritiesByCategoryId');
 }
 
 function displayFormCategory(req, res) {
@@ -75,7 +70,6 @@ async function postUpdateCategory(req, res) {
     const errors = validationResult(req);
     const { id } = req.params;
     const [categoryDb] = await selectCategory(+id);
-    console.log('categoryDb:', categoryDb)
     if (!errors.isEmpty()) {
         res.render("updateCategory", {
             errors: errors.errors,
@@ -101,7 +95,6 @@ async function deleteCategory(req, res) {
         return;
     }
     const [category] = await selectCategory(+id)
-    console.log('category:', category)
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         res.render("deleteCategoryPage", { category: category, errors: errors.errors})

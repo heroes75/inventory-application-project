@@ -3,19 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles-add-celebrity.css">
     <title>Update info of <%- locals.celebrity?.name || `Celebrity`%></title>
   </head>
   <body>
     <%- include('partials/header') %> 
-    <%- include('partials/errors', {errors: locals.errors}) %>
-    <% if (locals.celebrity) { %>
-    <form action="/celebrity/<%- celebrity.id %>/update" method="post">
-      <%- include('partials/celebrityForm', {categories: categories, celebrity: celebrity}) %>
-      <%- include('partials/passwordForm') %>
-      <button type="submit">Update your celebrity</button>
-    </form>
-    <% } else { %>
-        you didn't added this celebrity yet
-    <%} %>
+    <main>
+      <%- include('partials/errors', {errors: locals.errors}) %>
+      <% if (locals.celebrity) { %>
+      <form action="/celebrity/<%- celebrity.id %>/update" method="post">
+        <%- include('partials/celebrityForm', {categories: categories, celebrity: celebrity}) %>
+        <%- include('partials/passwordForm') %>
+        <button type="submit">Update your celebrity</button>
+      </form>
+      <% } else { %>
+          you didn't added this celebrity yet
+      <%} %>
+    </main>
   </body>
 </html>

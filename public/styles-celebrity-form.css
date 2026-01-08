@@ -1,0 +1,54 @@
+.celebrity-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.celebrity-form-container > div {
+    display: flex;
+    /* justify-content: center; */
+}
+.input {
+    flex-grow: 1;
+    width: 50%;
+}
+.label {
+    flex-grow: 1;
+    padding: 10px;
+    width: 50%;
+}
+
+input, select {
+    padding: 10px;
+    align-self: start;
+    font-size: 20px;
+}
+
+label {
+    align-self: start;
+    font-size: 20px;
+}
+
+
+.description-input-container {
+    flex-direction: column;
+}
+
+.description-input-container .label {
+    flex-grow: 2;
+    width: 100%;
+    align-self: center;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+}
+
+.description-input-container label {
+    margin: 1px auto;
+}
+
+.description-input-container .input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

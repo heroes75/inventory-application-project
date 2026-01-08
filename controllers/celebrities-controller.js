@@ -147,7 +147,6 @@ async function deleteCelebrity(req, res) {
 async function getDeleteCelebrityPage(req, res) {
     const id = req.params?.id
     const [celebrity] = await selectCelebrity(id)
-    console.log('celebrity:', celebrity)
     if (!celebrity?.celebrityid) {
         throw new CustomNotFoundError("not celebrity found")
     }

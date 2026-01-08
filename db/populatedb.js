@@ -26,7 +26,6 @@ const SQL = `
 `;
 
 async function main() {
-    console.log("start populating...");
     const client = new Client({
         connectionString: argv[2],
     });
@@ -34,7 +33,6 @@ async function main() {
     await client.connect();
     await client.query(SQL);
     await client.end();
-    console.log("end populating...");
 }
 
 main();

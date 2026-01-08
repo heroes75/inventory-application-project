@@ -7,12 +7,16 @@ main {
     display: flex;
     gap: 32px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
 }
 
 .celebrity-frame {
     width: 400px;
     height: 300px;
     border-radius: 20px;
+    align-self: center;
 }
 .celebrity-frame ul {
     display: flex;

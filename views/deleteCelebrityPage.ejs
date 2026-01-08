@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles-delete-category-page.css">
     <title>Delete <%= celebrity.celebrityname %></title>
 </head>
 <body>
     <%- include('partials/header') %>
-    <form action="/celebrity/<%- locals.celebrity.celebrityid %>/delete" method="post">
-    <%- include('partials/errors', {errors: locals.errors}) %>
-    <%- include('partials/passwordForm') %>
-    <button type="submit">Delete this celebrity</button>
-</form>
+    <main>
+        <form action="/celebrity/<%- locals.celebrity.celebrityid %>/delete" method="post">
+        <%- include('partials/errors', {errors: locals.errors}) %>
+        <%- include('partials/passwordForm') %>
+        <button type="submit">Delete this celebrity</button>
+        </form>
+    </main>
 </body>
 </html>
